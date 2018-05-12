@@ -36,13 +36,16 @@ obj.sum;
 //16
 //--------------Filter---------------------//
 function myFilter(callback,optionalObject){
+  let filteredArr =[];
   if(optionalObject){
     callback=callback.bind(optionalObject);
   }
   for(let i=0;i<this.length;i++){
-    callback(this[i],i,this)
+    if (callback(this[i],i,this)){
+    	  filteredArr.push(this[i])
+    }
   }
-  return []
+  return filteredArr;
 }
 Array.prototype.myFilter = myfilter;
 //******Tests*******
