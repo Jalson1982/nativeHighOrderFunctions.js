@@ -1,9 +1,9 @@
 //--------------forEach---------------------//
-function myForEach(callback,optionalThis){
-	if(optionalThis) {
-		callback = callback.bind(optionalThis);
+function myForEach(callback,optionalObject){
+	if(optionalObject) {
+		callback = callback.bind(optionalObject);
 	}
-	for(var i=0;i<this.length;i++) {
+	for(let i=0;i<this.length;i++) {
 		callback(this[i],i,this)
 	}
 }
@@ -12,8 +12,7 @@ Array.prototype.myForEach = myForEach;
 //******Tests*******
 //Test 1
 const arr = [1,2,3];
-arr.myForEach(function(num) {
-  console.log(num)});
+arr.myForEach(num => console.log(num));
 //*Print on screen 1 2 3*
 -----------------------
 //Test 2 (with optional argument this -> test from mdn)
@@ -35,3 +34,20 @@ obj.count;
 // 3 
 obj.sum;
 //16
+//--------------Filter---------------------//
+function myFilter(callback,optionalObject){
+  if(optionalObject){
+    callback=callback.bind(optionalObject);
+  }
+  for(let i=0;i<this.length;i++){
+    callback(this[i],i,this)
+  }
+  return []
+}
+Array.prototype.myFilter = myfilter;
+//******Tests*******
+//Test 1
+const arr = [1,2,3];
+const myFilteredArray = arr.myFilter(num => num>=2);
+console.log(myFilteredArray);
+//*Print on screen [2,3]
