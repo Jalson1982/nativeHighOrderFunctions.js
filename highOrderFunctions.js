@@ -1,4 +1,4 @@
---------------forEach---------------------
+//--------------forEach---------------------//
 function myForEach(callback,optionalThis){
 	if(optionalThis) {
 		callback = callback.bind(optionalThis);
