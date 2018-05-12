@@ -9,14 +9,14 @@ function myForEach(callback,optionalThis){
 }
 Array.prototype.myForEach = myForEach;
 
-******Tests*******
-Test 1
+//******Tests*******
+//Test 1
 const arr = [1,2,3];
 arr.myForEach(function(num) {
   console.log(num)});
-*Print on screen 1 2 3*
+//*Print on screen 1 2 3*
 -----------------------
-Test 2 (with optional argument this -> test from mdn)
+//Test 2 (with optional argument this -> test from mdn)
 function Counter() {
   this.sum = 0;
   this.count = 0;
@@ -34,3 +34,4 @@ obj.add([2, 5, 9]);
 obj.count;
 // 3 
 obj.sum;
+//16
