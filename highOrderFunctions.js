@@ -54,3 +54,19 @@ const arr = [1,2,3];
 const myFilteredArray = arr.myFilter(num => num>=2);
 console.log(myFilteredArray);
 //*Print on screen [2,3]
+//-------------map---------------------//
+function mymap(callback,optionalObject){
+  let mappedArray =[];
+  if(optionalObject){
+    callback=callback.bind(optionalObject);
+  }
+  for(let i=0;i<this.length;i++){
+    mappedArray.push(callback(this[i],i,this))
+  }
+  return mappedArray;
+}
+//Test 1
+const arr = [1,2,3];
+const myMappedArr = arr.myFilter(num => num + 10);
+console.log(myMappedArr);
+//*Print on screen [11,12,13]
