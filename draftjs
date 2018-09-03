@@ -20,9 +20,11 @@ import {
     BlockquoteButton,
     CodeBlockButton,
 } from 'draft-js-buttons';
+
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import 'draft-js-static-toolbar-plugin/lib/plugin.css';
 import 'draft-js-sticker-plugin/lib/plugin.css';
-import {Immutable, EditorState, Entity, Modifier, CompositeDecorator, convertToRaw, convertFromRaw, htmlToState } from 'draft-js';
+import { EditorState, Entity, Modifier, CompositeDecorator, convertToRaw, convertFromRaw, htmlToState } from 'draft-js';
 import { setNewTemplate } from "../actions/templateActions";
 import { addNewTemplateModal } from "../actions/modalActions";
 import { fromJS } from 'immutable';
@@ -48,13 +50,12 @@ const toolbarPlugin = createToolbarPlugin({
 
 
 const { Toolbar } = toolbarPlugin;
-const hashtagPlugin = createHashtagPlugin();
-const plugins = [toolbarPlugin,hashtagPlugin];
+const plugins = [toolbarPlugin];
 
 const Placeholder = props => (
-    <div className="mysp" contentEditable={false} readOnly data-offset-key={props.offsetkey}>
+    <span className="mysp" contentEditable={false} readOnly data-offset-key={props.offsetkey}>
         {props.children}
-    </div>
+    </span>
 );
 
 
@@ -80,14 +81,6 @@ const styleMap = {
      
     },
   };
-  const blockRenderMap = Immutable.Map({
-    'header-two': {
-      element: 'h2'
-    },
-    'unstyled': {
-      element: 'h2'
-    }
-  });
 
 class TemplateDetailsForm extends React.Component {
     constructor(props) {
@@ -101,6 +94,7 @@ class TemplateDetailsForm extends React.Component {
 
     onChange = (editorState) => {
         const longTxt = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
+        console.log(longTxt)
         this.setState({
             editorState,
             templateData: {
@@ -177,7 +171,6 @@ class TemplateDetailsForm extends React.Component {
                             decorators = {customDecorators}
                             customStyleMap={styleMap}
                             onChange={this.onChange}
-                            blockRenderMap={blockRenderMap}
                             plugins={plugins}
                         />
                      
